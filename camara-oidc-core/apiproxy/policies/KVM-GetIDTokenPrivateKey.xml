@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations continueOnError="false" enabled="true" name="KVM-GetIDTokenPrivateKey">
+  <DisplayName>KVM-GetIDTokenPrivateKey</DisplayName>
+  <Properties/>
+  <!--TODO RENAME MapName TO camara-oidc-profiles-config -->
+  <MapName>camara-oidc-ciba</MapName>
+  <ExclusiveCache>false</ExclusiveCache>
+  <ExpiryTimeInSecs>300</ExpiryTimeInSecs>
+  <Get assignTo="private.id_token.key">
+    <Key>
+      <Parameter>id_token_private_key</Parameter>
+    </Key>
+  </Get>
+  <Scope>environment</Scope>
+</KeyValueMapOperations>

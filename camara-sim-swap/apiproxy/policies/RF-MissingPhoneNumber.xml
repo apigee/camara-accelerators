@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault continueOnError="false" enabled="true" name="RF-MissingPhoneNumber">
+  <DisplayName>RF-MissingPhoneNumber</DisplayName>
+  <Properties/>
+  <FaultResponse>
+    <Set>
+      <Headers/>
+      <Payload contentType="application/json">
+{
+  "status": 400,
+  "code": "INVALID_ARGUMENT",
+  "message": "Client specified an invalid argument, request body or query param: Phone Number"
+}             
+            </Payload>
+      <StatusCode>400</StatusCode>
+    </Set>
+  </FaultResponse>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

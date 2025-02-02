@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyAPIKey continueOnError="false" enabled="true" name="VA-VerifyIssuer">
+  <DisplayName>VA-VerifyIssuer</DisplayName>
+  <Properties/>
+  <APIKey ref="jwt.JWT-ValidateClientAssertionParameter.claim.issuer"/>
+</VerifyAPIKey>

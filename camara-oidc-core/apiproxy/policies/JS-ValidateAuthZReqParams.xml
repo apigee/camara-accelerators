@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript continueOnError="false" enabled="true" timeLimit="200" name="JS-ValidateAuthZReqParams">
+  <DisplayName>JS-ValidateAuthZReqParams</DisplayName>
+  <Properties/>
+  <ResourceURL>jsc://validate-authz-req-params-1.0.js</ResourceURL>
+</Javascript>

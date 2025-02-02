@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 continueOnError="false" enabled="true" name="OAuthV2-GenerateAuthorizationCode">
+  <DisplayName>OAuthV2-GenerateAuthorizationCode</DisplayName>
+  <Properties/>
+  <Attributes/>
+  <Operation>GenerateAuthorizationCode</Operation>
+  <ClientId>request.formparam.client_id</ClientId>
+  <ResponseType>request.formparam.response_type</ResponseType>
+  <Scope>request.formparam.scope</Scope>
+  <state>request.formparam.state</state>
+  <RedirectUri>request.formparam.redirect_uri</RedirectUri>
+  <Attributes>
+    <Attribute name="sub" ref="request.formparam.login_hint" display="true"/>
+    <Attribute name="code_challenge" ref="request.formparam.code_challenge" display="true"/>
+  </Attributes>
+  <GenerateResponse enabled="true"/>
+  <RFCCompliantRequestResponse>true</RFCCompliantRequestResponse>
+</OAuthV2>

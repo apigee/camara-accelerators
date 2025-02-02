@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="7" name="camara-sim-swap-v1">
+  <DisplayName />
+  <Description />
+  <CreatedAt>1737648101715</CreatedAt>
+  <LastModifiedAt>1737648101715</LastModifiedAt>
+  <BasePaths>/camara/sim-swap/v1</BasePaths>
+  <Policies>
+    <Policy>OAuthVerifyAccessToken</Policy>
+    <Policy>EV-PhoneNumber</Policy>
+    <Policy>RF-MissingPhoneNumber</Policy>
+    <Policy>JS-VerifyScope</Policy>
+    <Policy>RF-InvalidScope</Policy>
+  </Policies>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <Resources>
+    <Resource>properties://simswap.properties</Resource>
+    <Resource>jsc://verify-scope-1.0.js</Resource>
+  </Resources>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>

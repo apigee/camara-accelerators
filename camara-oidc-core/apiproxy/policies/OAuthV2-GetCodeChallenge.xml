@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GetOAuthV2Info continueOnError="false" enabled="true" name="OAuthV2-GetCodeChallenge">
+  <DisplayName>OAuthV2-GetCodeChallenge</DisplayName>
+  <AuthorizationCode ref="request.formparam.code"/>
+</GetOAuthV2Info>

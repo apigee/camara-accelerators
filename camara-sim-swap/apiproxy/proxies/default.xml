@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+  <Description />
+  <FaultRules />
+  <PreFlow name="PreFlow">
+    <Request>
+      <Step>
+        <Name>OAuthVerifyAccessToken</Name>
+      </Step>
+      <Step>
+        <Name>JS-VerifyScope</Name>
+      </Step>
+      <Step>
+        <Condition>(error_type != null And error_type != "")</Condition>
+        <Name>RF-InvalidScope</Name>
+      </Step>
+    </Request>
+    <Response />
+  </PreFlow>
+  <PostFlow name="PostFlow">
+    <Request />
+    <Response />
+  </PostFlow>
+  <Flows>
+    <Flow name="retrieveSimSwapDate">
+      <Description>Get timestamp of last SIM swap event for a mobile user account provided with
+        phone number.</Description>
+      <Request>
+        <Step>
+          <Name>EV-PhoneNumber</Name>
+        </Step>
+        <Step>
+          <Condition>(phoneNumber is null)|| (phoneNumber != accesstoken.sub)</Condition>
+          <Name>RF-MissingPhoneNumber</Name>
+        </Step>
+      </Request>
+      <Response />
+      <Condition>(proxy.pathsuffix MatchesPath "/retrieve-date") and (request.verb = "POST")</Condition>
+    </Flow>
+    <Flow name="checkSimSwap">
+      <Description>Check if SIM swap has been performed during a past period</Description>
+      <Request>
+        <Step>
+          <Name>EV-PhoneNumber</Name>
+        </Step>
+        <Step>
+          <Condition>(phoneNumber is null)|| (phoneNumber != accesstoken.sub)</Condition>
+          <Name>RF-MissingPhoneNumber</Name>
+        </Step>
+      </Request>
+      <Response />
+      <Condition>(proxy.pathsuffix MatchesPath "/check") and (request.verb = "POST")</Condition>
+    </Flow>
+  </Flows>
+  <HTTPProxyConnection>
+    <BasePath>/camara/sim-swap/v1</BasePath>
+    <Properties />
+  </HTTPProxyConnection>
+  <RouteRule name="default">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>

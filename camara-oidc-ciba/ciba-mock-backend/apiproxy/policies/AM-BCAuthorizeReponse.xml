@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-BCAuthorizeReponse">
+  <DisplayName>AM-BCAuthorizeReponse</DisplayName>
+  <Set>
+    <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+    "txtReferenceId": "%messageid#"
+}
+    </Payload>
+  </Set>&gt;
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

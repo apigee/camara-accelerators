@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+  <Description/>
+  <FaultRules/>
+  <PreFlow name="PreFlow">
+    <Request>
+      <Step>
+        <Name>OAuthV2-VerifyAccessToken</Name>
+      </Step>
+      <Step>
+        <Name>JS-VerifyScope</Name>
+      </Step>
+      <Step>
+        <Condition>(error_type != null And error_type != "")</Condition>
+        <Name>RF-InvalidScope</Name>
+      </Step>
+    </Request>
+    <Response/>
+  </PreFlow>
+  <PostFlow name="PostFlow">
+    <Request/>
+    <Response/>
+  </PostFlow>
+  <Flows>
+    <Flow name="KYC_Match">
+      <Description>Matching a customer identity by checking a set of attributes related against the account data bound to their phone number.</Description>
+      <Request>
+        <Step>
+          <Name>EV-DocumentID</Name>
+        </Step>
+        <Step>
+          <Condition>flow.idDocument is null</Condition>
+          <Name>RF-MissingIDDcoument</Name>
+        </Step>
+      </Request>
+      <Response/>
+      <Condition>(proxy.pathsuffix MatchesPath "/match") and (request.verb = "POST")</Condition>
+    </Flow>
+  </Flows>
+  <HTTPProxyConnection>
+    <BasePath>/camara/kyc-match/v0.2</BasePath>
+    <Properties/>
+  </HTTPProxyConnection>
+  <RouteRule name="default">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>

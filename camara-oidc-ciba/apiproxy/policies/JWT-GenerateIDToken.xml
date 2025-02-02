@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GenerateJWT continueOnError="false" enabled="true" name="JWT-GenerateIDToken">
+  <DisplayName>JWT-GenerateIDToken</DisplayName>
+  <Algorithm>RS256</Algorithm>
+  <PrivateKey>
+    <Value ref="private.id_token.key"/>
+  </PrivateKey>
+  <Subject ref="flow.bc.sub"/>
+  <Issuer ref="propertyset.ciba.issuer"/>
+  <Audience ref="flow.bc.client_id"/>
+  <ExpiresIn ref="propertyset.ciba.expiry"/>
+  <OutputVariable>flow.id_token</OutputVariable>
+</GenerateJWT>

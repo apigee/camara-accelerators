@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault continueOnError="false" enabled="true" name="RF-InvalidTokenRequest">
+  <DisplayName>RF-InvalidTokenRequest</DisplayName>
+  <FaultResponse>
+    <Set>
+      <Headers/>
+      <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+    "error": "%error_type#",
+    "error_description": "%error_variable#"
+}
+            </Payload>
+      <StatusCode>{status_code}</StatusCode>
+    </Set>
+  </FaultResponse>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

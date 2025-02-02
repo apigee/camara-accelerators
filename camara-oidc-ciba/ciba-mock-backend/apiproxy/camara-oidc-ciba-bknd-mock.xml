@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="camara-oidc-ciba-bknd-mock">
+  <DisplayName/>
+  <Description/>
+  <CreatedAt>1738002686817</CreatedAt>
+  <LastModifiedAt>1738003555469</LastModifiedAt>
+  <BasePaths>/camara-oidc-ciba-bknd-mock</BasePaths>
+  <Policies>
+    <Policy>AM-BCAuthorizeReponse</Policy>
+    <Policy>AM-TokenResponse</Policy>
+  </Policies>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+</APIProxy>

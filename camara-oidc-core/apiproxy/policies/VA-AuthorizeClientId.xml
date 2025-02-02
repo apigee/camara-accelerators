@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyAPIKey continueOnError="false" enabled="true" name="VA-AuthorizeClientId">
+  <DisplayName>VA-AuthorizeClientId</DisplayName>
+  <Properties/>
+  <APIKey ref="oidc.flow.authorize.client_id"/>
+</VerifyAPIKey>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+  <PreFlow name="PreFlow">
+    <Request>
+    </Request>
+    <Response />
+  </PreFlow>
+  <Flows>
+    <Flow name="back-channel-authz">
+      <Description />
+      <Request>
+        <Step>
+          <Name>JS-ValidateAuthZRequest</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidBCAuthZRequest</Name>
+        </Step>
+        <Step>
+          <Name>JWT-ValidateRequestParameter</Name>
+        </Step>
+        <Step>
+          <Name>JWT-ValidateClientAssertionParameter</Name>
+        </Step>
+        <Step>
+          <Name>JS-ValidateAuthZJWTClaims</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidBCAuthZRequest</Name>
+        </Step>
+        <Step>
+          <Name>VA-VerifyIssuer</Name>
+        </Step>
+        <Step>
+          <Name>AE-GetAPIProductScopes</Name>
+        </Step>
+        <Step>
+          <Name>JS-ValidateAuthZScopes</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidBCAuthZRequest</Name>
+        </Step>
+      </Request>
+      <Response>
+        <Step>
+          <Name>OAuthV2-GenerateAuthorizationCode</Name>
+        </Step>
+        <Step>
+          <Name>AM-AssignBCAuthorizeResponse</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/bc-authorize") and (request.verb = "POST")</Condition>
+    </Flow>
+    <Flow name="token">
+      <Description />
+      <Request>
+        <Step>
+          <Name>JS-ValidateTokenRequest</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidBCTokenRequest</Name>
+        </Step>
+        <Step>
+          <Name>JWT-ValidateClientAssertionParameter</Name>
+        </Step>
+        <Step>
+          <Name>JS-ValidateTokenJWTClaims</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidBCTokenRequest</Name>
+        </Step>
+        <Step>
+          <Name>VA-VerifyIssuer</Name>
+        </Step>
+      </Request>
+      <Response>
+        <Step>
+          <Name>BA-GenerateAuthorizationHeader</Name>
+        </Step>
+        <Step>
+          <Name>OAuthV2-GenerateAccessToken</Name>
+        </Step>
+        <Step>
+          <Name>EV-AccessTokenResponse</Name>
+        </Step>
+        <Step>
+          <Name>KVM-GetIDTokenPrivateKey</Name>
+        </Step>
+        <Step>
+          <Name>JWT-GenerateIDToken</Name>
+        </Step>
+        <Step>
+          <Name>AM-BCTokenResponse</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+    </Flow>
+    <Flow name="DefaultFlow">
+      <Description />
+      <Request>
+        <Step>
+          <Name>RF-OperationUnavailable</Name>
+        </Step>
+      </Request>
+      <Response />
+    </Flow>
+  </Flows>
+  <PostFlow name="PostFlow">
+    <Request />
+    <Response />
+  </PostFlow>
+  <HTTPProxyConnection>
+    <BasePath>/camara/openIDConnectCIBA/v1</BasePath>
+  </HTTPProxyConnection>
+  <RouteRule name="default">
+    <TargetEndpoint>default</TargetEndpoint>
+  </RouteRule>
+</ProxyEndpoint>

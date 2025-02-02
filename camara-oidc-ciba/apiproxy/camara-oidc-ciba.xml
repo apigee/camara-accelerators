@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="camara-oidc-ciba-v1">
+  <DisplayName />
+  <Description />
+  <CreatedAt>1738075488951</CreatedAt>
+  <LastModifiedAt>1738075507379</LastModifiedAt>
+  <BasePaths>/camara/openIDConnectCIBA/v1</BasePaths>
+  <Policies>
+    <Policy>JS-ValidateAuthZRequest</Policy>
+    <Policy>JWT-ValidateRequestParameter</Policy>
+    <Policy>JWT-ValidateClientAssertionParameter</Policy>
+    <Policy>RF-InvalidBCAuthZRequest</Policy>
+    <Policy>JS-ValidateAuthZJWTClaims</Policy>
+    <Policy>VA-VerifyIssuer</Policy>
+    <Policy>AE-GetAPIProductScopes</Policy>
+    <Policy>JS-ValidateAuthZScopes</Policy>
+    <Policy>OAuthV2-GenerateAuthorizationCode</Policy>
+    <Policy>AM-AssignBCAuthorizeResponse</Policy>
+    <Policy>RF-InvalidBCTokenRequest</Policy>
+    <Policy>JS-ValidateTokenRequest</Policy>
+    <Policy>JS-ValidateTokenJWTClaims</Policy>
+    <Policy>OAuthV2-GenerateAccessToken</Policy>
+    <Policy>BA-GenerateAuthorizationHeader</Policy>
+    <Policy>EV-AccessTokenResponse</Policy>
+    <Policy>AM-BCTokenResponse</Policy>
+    <Policy>RF-OperationUnavailable</Policy>
+    <Policy>KVM-GetIDTokenPrivateKey</Policy>
+    <Policy>JWT-GenerateIDToken</Policy>
+  </Policies>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <Resources>
+    <Resource>jsc://validate-authorize-request-1.0.js</Resource>
+    <Resource>jsc://validate-token-request-1.0.js</Resource>
+    <Resource>jsc://validate-authz-jwt-claims-1.0.js</Resource>
+    <Resource>jsc://validate-scopes-1.0.js</Resource>
+    <Resource>jsc://validate-token-jwt-claims-1.0.js</Resource>
+    <Resource>properties://ciba.properties</Resource>
+  </Resources>
+  <TargetEndpoints>
+    <TargetEndpoint>default</TargetEndpoint>
+  </TargetEndpoints>
+</APIProxy>

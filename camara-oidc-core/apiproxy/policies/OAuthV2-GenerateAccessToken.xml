@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 continueOnError="false" enabled="true" name="OAuthV2-GenerateAccessToken">
+  <DisplayName>OAuthV2-GenerateAccessToken</DisplayName>
+  <Operation>GenerateAccessToken</Operation>
+  <GrantType>request.formparam.grant_type</GrantType>
+  <RedirectUri>request.formparam.redirect_uri</RedirectUri>
+  <Code>request.formparam.code</Code>
+  <SupportedGrantTypes>
+    <GrantType>authorization_code</GrantType>
+  </SupportedGrantTypes>
+  <GenerateResponse enabled="true"/>
+  <RFCCompliantRequestResponse>true</RFCCompliantRequestResponse>
+</OAuthV2>

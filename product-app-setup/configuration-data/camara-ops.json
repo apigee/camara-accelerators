@@ -1,0 +1,41 @@
+{
+    "operationConfigs": [
+        {
+            "apiSource": "camara-kyc-match-v1",
+            "operations": [
+                {
+                    "resource": "/"
+                }
+            ],
+            "quota": {}
+        },
+        {
+            "apiSource": "camara-sim-swap-v1",
+            "operations": [
+                {
+                    "resource": "/"
+                }
+            ],
+            "quota": {}
+        },
+        {
+            "apiSource": "camara-oidc-ciba-v1",
+            "operations": [
+                {
+                    "resource": "/"
+                }
+            ],
+            "quota": {}
+        },
+        {
+            "apiSource": "camara-oidc-core-v1",
+            "operations": [
+                {
+                    "resource": "/"
+                }
+            ],
+            "quota": {}
+        }
+    ],
+    "operationConfigType": "proxy"
+}

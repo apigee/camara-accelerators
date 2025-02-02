@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+  <Description />
+  <FaultRules />
+  <PreFlow name="PreFlow">
+    <Request />
+    <Response />
+  </PreFlow>
+  <PostFlow name="PostFlow">
+    <Request />
+    <Response />
+  </PostFlow>
+  <Flows>
+    <Flow name="authorize">
+      <Description />
+      <Request>
+        <Step>
+          <Name>JS-ValidateAuthorizeRequest</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidAuthZRequest</Name>
+        </Step>
+        <Step>
+          <Name>VA-AuthorizeClientId</Name>
+        </Step>
+        <Step>
+          <Name>JS-ValidateAuthZReqParams</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidAuthZRequest</Name>
+        </Step>
+        <Step>
+          <Name>AE-GetAPIProductScopes</Name>
+        </Step>
+        <Step>
+          <Name>JS-ValidateAuthZScopes</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidAuthZRequest</Name>
+        </Step>
+      </Request>
+      <Response>
+        <Step>
+          <Name>AM-SetLoginPage</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/authorize") and (request.verb = "GET")</Condition>
+    </Flow>
+    <Flow name="token">
+      <Description />
+      <Request>
+        <Step>
+          <Name>JS-ValidateTokenRequest</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidTokenRequest</Name>
+        </Step>
+        <Step>
+          <Name>OAuthV2-GetCodeChallenge</Name>
+        </Step>
+        <Step>
+          <Name>JS-ValidateCodeChallenge</Name>
+        </Step>
+        <Step>
+          <Condition>(error_type != null And error_type != "")</Condition>
+          <Name>RF-InvalidTokenRequest</Name>
+        </Step>
+      </Request>
+      <Response>
+        <Step>
+          <Name>OAuthV2-GenerateAccessToken</Name>
+        </Step>
+        <Step>
+          <Name>EV-AccessTokenResponse</Name>
+        </Step>
+        <Step>
+          <Name>KVM-GetIDTokenPrivateKey</Name>
+        </Step>
+        <Step>
+          <Name>JWT-GenerateIDToken</Name>
+        </Step>
+        <Step>
+          <Name>AM-OIDCTokenResponse</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+    </Flow>
+    <Flow name="consent">
+      <Description />
+      <Request />
+      <Response>
+        <Step>
+          <Name>AM-SetConsentPage</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/consent") and (request.verb = "POST")</Condition>
+    </Flow>
+    <Flow name="confirm">
+      <Description />
+      <Request>
+        <Step>
+          <Name>OAuthV2-GenerateAuthorizationCode</Name>
+        </Step>
+      </Request>
+      <Response />
+      <Condition>(proxy.pathsuffix MatchesPath "/confirm") and (request.verb = "POST")</Condition>
+    </Flow>
+    <Flow name="DefaultFlow">
+      <Description />
+      <Request>
+        <Step>
+          <Name>RF-OperationUnavailable</Name>
+        </Step>
+      </Request>
+      <Response />
+    </Flow>
+  </Flows>
+  <HTTPProxyConnection>
+    <BasePath>/camara/openIDConnectCore/v1</BasePath>
+    <Properties />
+  </HTTPProxyConnection>
+  <RouteRule name="default" />
+</ProxyEndpoint>

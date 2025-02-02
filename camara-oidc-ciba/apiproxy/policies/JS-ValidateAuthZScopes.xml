@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript continueOnError="false" enabled="true" timeLimit="200" name="JS-ValidateAuthZScopes">
+  <DisplayName>JS-ValidateAuthZScopes</DisplayName>
+  <Properties/>
+  <ResourceURL>jsc://validate-scopes-1.0.js</ResourceURL>
+</Javascript>

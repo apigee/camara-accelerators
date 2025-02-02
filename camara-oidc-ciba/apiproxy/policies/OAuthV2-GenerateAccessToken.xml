@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 continueOnError="false" enabled="true" name="OAuthV2-GenerateAccessToken">
+  <DisplayName>OAuthV2-GenerateAccessToken</DisplayName>
+  <ExternalAuthorization>false</ExternalAuthorization>
+  <Operation>GenerateAccessToken</Operation>
+  <GrantType>propertyset.ciba.grant_type</GrantType>
+  <RedirectUri>propertyset.ciba.redirect_uri</RedirectUri>
+  <Code>request.formparam.auth_req_id</Code>
+  <SupportedGrantTypes/>
+  <GenerateResponse enabled="true"/>
+  <RFCCompliantRequestResponse>true</RFCCompliantRequestResponse>
+</OAuthV2>

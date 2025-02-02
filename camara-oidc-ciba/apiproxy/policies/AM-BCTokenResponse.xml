@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-BCTokenResponse">
+  <DisplayName>AM-BCTokenResponse</DisplayName>
+  <Set>
+    <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+    "access_token": "%flow.bc.access_token#",
+    "expires_in": "%flow.bc.expires_in#",
+    "token_type": "%flow.bc.token_type#",
+    "id_token": "%flow.id_token#"
+}
+    </Payload>
+  </Set>&gt;
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

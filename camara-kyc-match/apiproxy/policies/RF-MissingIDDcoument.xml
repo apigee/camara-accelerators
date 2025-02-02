@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault continueOnError="false" enabled="true" name="RF-MissingIDDcoument">
+  <Properties/>
+  <FaultResponse>
+    <Set>
+      <Headers/>
+      <Payload contentType="application/json">
+{
+  "status": 403,
+  "code": "KNOW_YOUR_CUSTOMER.ID_DOCUMENT_REQUIRED",
+  "message": "Client specified an invalid argument, request body or query param"
+}             
+            </Payload>
+      <StatusCode>400</StatusCode>
+    </Set>
+  </FaultResponse>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

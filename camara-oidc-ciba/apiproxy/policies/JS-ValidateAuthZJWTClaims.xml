@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript continueOnError="false" enabled="true" timeLimit="200" name="JS-ValidateAuthZJWTClaims">
+  <DisplayName>JS-ValidateAuthZJWTClaims</DisplayName>
+  <Properties/>
+  <ResourceURL>jsc://validate-authz-jwt-claims-1.0.js</ResourceURL>
+</Javascript>

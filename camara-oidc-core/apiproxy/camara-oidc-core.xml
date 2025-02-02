@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="22" name="camara-oidc-core-v1">
+  <DisplayName />
+  <Description />
+  <CreatedAt>1738084567335</CreatedAt>
+  <LastModifiedAt>1738084567335</LastModifiedAt>
+  <BasePaths>/camara/openIDConnectCore/v1</BasePaths>
+  <Policies>
+    <Policy>JS-ValidateAuthorizeRequest</Policy>
+    <Policy>RF-InvalidAuthZRequest</Policy>
+    <Policy>VA-AuthorizeClientId</Policy>
+    <Policy>AE-GetAPIProductScopes</Policy>
+    <Policy>JS-ValidateAuthZScopes</Policy>
+    <Policy>JS-ValidateAuthZReqParams</Policy>
+    <Policy>AM-SetLoginPage</Policy>
+    <Policy>AM-SetConsentPage</Policy>
+    <Policy>OAuthV2-GenerateAuthorizationCode</Policy>
+    <Policy>JS-ValidateTokenRequest</Policy>
+    <Policy>RF-InvalidTokenRequest</Policy>
+    <Policy>OAuthV2-GenerateAccessToken</Policy>
+    <Policy>EV-AccessTokenResponse</Policy>
+    <Policy>AM-OIDCTokenResponse</Policy>
+    <Policy>KVM-GetIDTokenPrivateKey</Policy>
+    <Policy>JWT-GenerateIDToken</Policy>
+    <Policy>RF-OperationUnavailable</Policy>
+    <Policy>OAuthV2-GetCodeChallenge</Policy>
+    <Policy>JS-ValidateCodeChallenge</Policy>
+  </Policies>
+  <ProxyEndpoints>
+    <ProxyEndpoint>default</ProxyEndpoint>
+  </ProxyEndpoints>
+  <Resources>
+    <Resource>jsc://validate-authorize-request-1.0.js</Resource>
+    <Resource>jsc://validate-scopes-1.0.js</Resource>
+    <Resource>jsc://validate-authz-req-params-1.0.js</Resource>
+    <Resource>jsc://validate-token-request-1.0.js</Resource>
+    <Resource>properties://oidc.properties</Resource>
+    <Resource>jsc://validate-code-challenge-1.0.js</Resource>
+  </Resources>
+</APIProxy>

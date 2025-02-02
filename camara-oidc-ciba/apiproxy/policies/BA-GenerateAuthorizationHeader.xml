@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<BasicAuthentication continueOnError="false" enabled="true" name="BA-GenerateAuthorizationHeader">
+  <DisplayName>BA-GenerateAuthorizationHeader</DisplayName>
+  <Operation>Encode</Operation>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+  <User ref="verifyapikey.VA-VerifyIssuer.client_id"/>
+  <Password ref="verifyapikey.VA-VerifyIssuer.client_secret"/>
+  <AssignTo createNew="true">request.header.Authorization</AssignTo>
+</BasicAuthentication>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT continueOnError="false" enabled="true" name="JWT-ValidateRequestParameter">
+  <DisplayName>JWT-ValidateRequestParameter</DisplayName>
+  <Algorithm>RS256</Algorithm>
+  <Source>request.formparam.request</Source>
+  <PublicKey>
+    <JWKS uriRef="propertyset.ciba.jwks_uri" />
+  </PublicKey>
+  <Audience ref="propertyset.ciba.issuer" />
+</VerifyJWT>

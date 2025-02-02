@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 continueOnError="false" enabled="true" name="OAuthV2-GenerateAuthorizationCode">
+  <DisplayName>OAuthV2-GenerateAuthorizationCode</DisplayName>
+  <ExternalAuthorization>false</ExternalAuthorization>
+  <Operation>GenerateAuthorizationCode</Operation>
+  <ClientId>jwt.JWT-ValidateRequestParameter.claim.issuer</ClientId>
+  <ResponseType>propertyset.ciba.code</ResponseType>
+  <Scope>jwt.JWT-ValidateClientAssertionParameter.claim.scope</Scope>
+  <RedirectUri>propertyset.ciba.redirect_uri</RedirectUri>
+  <Attributes>
+    <Attribute name="sub" ref="jwt.JWT-ValidateClientAssertionParameter.claim.login_hint" display="true"/>
+  </Attributes>
+  <GenerateResponse enabled="false"/>
+  <RFCCompliantRequestResponse>true</RFCCompliantRequestResponse>
+</OAuthV2>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-AssignBCAuthorizeResponse">
+  <DisplayName>AM-AssignBCAuthorizeResponse</DisplayName>
+  <Set>
+    <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+    "auth_req_id": "%oauthv2authcode.OAuthV2-GenerateAuthorizationCode.code#"
+}
+        </Payload>
+  </Set>
+  <AssignVariable>
+    <Name>name</Name>
+    <Value/>
+    <Ref/>
+  </AssignVariable>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>
