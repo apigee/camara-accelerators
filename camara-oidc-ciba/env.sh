@@ -25,7 +25,7 @@ export APIGEE_ENV="APIGEE_ENV_TO_SET"
 
 # Required: URI for the JWKS used to sign client assertions 
 # (e.g., https://token.dev/jwks/keys.json).
-export CLIENT_JKWS_URI="CLIENT_JWKS_URI" 
+export CLIENT_JWKS_URI="CLIENT_JWKS_URI" 
 
 # Required: Target Server URI for CIBA requests (e.g., "consent.com").
 #  "https://" will be prepended.  Use the same value as APIGEE_HOST 
@@ -37,7 +37,7 @@ export CIBA_TARGET_SERVER_URI="CIBA_TARGET_SERVER_URI"
 export CIBA_TARGET_SERVER_PATH="/camara-oidc-ciba-bknd-mock" 
 
 # Required: Private Key used by Apigee to sign the final ID token.
-# Format: "-----BEGIN PRIVATE KEY-----\nKEYHERE\n-----END PRIVATE KEY-----"
+# Format: "PEM FORMAT"
 export PRIVATE_KEY="" 
 
 # Required: Use mock backend? ("true" or "false").

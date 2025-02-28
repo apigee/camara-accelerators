@@ -27,11 +27,11 @@ export APIGEE_ENV="APIGEE_ENV_TO_SET"
 # Required: Target Server URI for KYC-MATCH.
 #  "https://" will be prepended.  Use the same value as APIGEE_HOST 
 #  if using the mock backend.
-export KYC-MATCH_TARGET_SERVER_URI="KYC-MATCH_TARGET_SERVER_URI" 
+export KYC_MATCH_TARGET_SERVER_URI="KYC-MATCH_TARGET_SERVER_URI" 
 
 # Required: Path added to KYC-MATCH_TARGET_SERVER_URI (e.g., "/KYC-MATCH/backend").
 #  Can be empty string. If using the mock backend, use "/camara-kyc-bknd-mock".
-export KYC-MATCH_TARGET_SERVER_PATH="" 
+export KYC_MATCH_TARGET_SERVER_PATH="" 
 
 # Required: Use mock backend? ("true" or "false").
 # Deploys a mock Apigee proxy for simulating simswap response.

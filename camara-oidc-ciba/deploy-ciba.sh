@@ -31,7 +31,7 @@ check_env_var() {
 check_env_var APIGEE_PROJECT_ID
 check_env_var APIGEE_ENV
 check_env_var APIGEE_HOST
-check_env_var CLIENT_JKWS_URI
+check_env_var CLIENT_JWKS_URI
 check_env_var CIBA_TARGET_SERVER_URI
 check_env_var CIBA_TARGET_SERVER_PATH
 check_env_var PRIVATE_KEY
@@ -63,7 +63,7 @@ code=code
 # token flow properties
 grant_type=authorization_code
 redirect_uri=https://localhost
-jwks_uri=$CLIENT_JKWS_URI"
+jwks_uri=$CLIENT_JWKS_URI"
 echo "$PRE_PROP" > ./apiproxy/resources/properties/ciba.properties || { echo "Error: Could not update ciba.properties"; exit 1; }
 
 sed -i 's|#PATH_PLACEHOLDER#|'"${CIBA_TARGET_SERVER_PATH}"'|g' ./apiproxy/targets/default.xml || { echo "Error: Could not update default.xml"; exit 1; }
@@ -84,7 +84,10 @@ echo "Creation of Target Server done"
 echo "Creating env-scoped KVM and KVM Entry for Private Key..."
 apigeecli kvms create --name camara-oidc-ciba  --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV"  --token "$TOKEN" || { echo "Error: Could not create KVM or it already exists. Proceeding with the setup..."; }
 
-apigeecli kvms entries create -m camara-oidc-ciba -k "id_token_private_key" --value "${PRIVATE_KEY}" --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV"  --token "$TOKEN" && echo "KVM Entry created successfully" || ( \
+if apigeecli kvms entries create -m camara-oidc-ciba -k "id_token_private_key" --value "${PRIVATE_KEY}" --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV"  --token "$TOKEN" 
+then 
+ echo "KVM Entry created successfully" 
+else 
   ret=$?
   if [[ $ret -eq 409 ]]; then
     echo "Warning: KVM Entry 'id_token_private_key' already exists.  Continuing..."
@@ -92,7 +95,7 @@ apigeecli kvms entries create -m camara-oidc-ciba -k "id_token_private_key" --va
     echo "Error: Could not create KVM entry. Error code: $ret. Exiting..."
     exit 1
   fi
-)
+fi
 
 
 # ==============================================================================

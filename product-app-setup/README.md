@@ -5,7 +5,7 @@ The generated credentials can be used for generating assertions for the CAMARA a
 
 ## Screencast
 
-[![Alt text](TBC)]()
+TBD
 
 ## Prerequisites
 
