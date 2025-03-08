@@ -30,7 +30,7 @@ export APIGEE_ENV="APIGEE_ENV_TO_SET"
 export SIM_SWAP_TARGET_SERVER_URI="SIM_SWAP_TARGET_SERVER_URI" 
 
 # Required: Path added to SIM_SWAP_TARGET_SERVER_URI (e.g., "/mySimSwap/backend").
-#  Can be empty string. If using the mock backend, use "/camara-simswap-bknd-mock".
+#  Can be empty string. If using the mock backend, use "/camara-sim-swap-mock-backend".
 export SIM_SWAP_TARGET_SERVER_PATH="" 
 
 # Required: Use mock backend? ("true" or "false").

@@ -30,7 +30,7 @@ export APIGEE_ENV="APIGEE_ENV_TO_SET"
 export KYC_MATCH_TARGET_SERVER_URI="KYC-MATCH_TARGET_SERVER_URI" 
 
 # Required: Path added to KYC-MATCH_TARGET_SERVER_URI (e.g., "/KYC-MATCH/backend").
-#  Can be empty string. If using the mock backend, use "/camara-kyc-bknd-mock".
+#  Can be empty string. If using the mock backend, use "/camara-kyc-match-mock-backend".
 export KYC_MATCH_TARGET_SERVER_PATH="" 
 
 # Required: Use mock backend? ("true" or "false").

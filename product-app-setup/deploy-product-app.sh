@@ -22,7 +22,7 @@
 PRODUCT_NAME=camara-apiproduct-all-apis
 DEVELOPER_NAME=camara-developer
 DEVELOPER_EMAIL="${DEVELOPER_NAME}@acme.com"
-SCOPES="check-sim-swap,kyc-match:match,openid,retrieve-sim-swap-date"
+SCOPES="kyc-match:match,openid,sim-swap,sim-swap:check,sim-swap:retrieve-date"
 
 # Check for required environment variables
 check_env_var() {

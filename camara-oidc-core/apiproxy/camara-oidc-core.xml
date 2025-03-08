@@ -1,48 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
  Copyright 2025 Google LLC
- Licensed under the Apache License, Version 2.0 (the License);
+
+ Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
+
       http://www.apache.org/licenses/LICENSE-2.0
+
  Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an AS
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="22" name="camara-oidc-core-v1">
-  <DisplayName />
-  <Description />
-  <CreatedAt>1738084567335</CreatedAt>
-  <LastModifiedAt>1738084567335</LastModifiedAt>
-  <BasePaths>/camara/openIDConnectCore/v1</BasePaths>
-  <Policies>
-    <Policy>JS-ValidateAuthorizeRequest</Policy>
-    <Policy>RF-InvalidAuthZRequest</Policy>
-    <Policy>VA-AuthorizeClientId</Policy>
-    <Policy>AE-GetAPIProductScopes</Policy>
-    <Policy>JS-ValidateAuthZScopes</Policy>
-    <Policy>JS-ValidateAuthZReqParams</Policy>
-    <Policy>AM-SetLoginPage</Policy>
-    <Policy>AM-SetConsentPage</Policy>
-    <Policy>OAuthV2-GenerateAuthorizationCode</Policy>
-    <Policy>JS-ValidateTokenRequest</Policy>
-    <Policy>RF-InvalidTokenRequest</Policy>
-    <Policy>OAuthV2-GenerateAccessToken</Policy>
-    <Policy>EV-AccessTokenResponse</Policy>
-    <Policy>AM-OIDCTokenResponse</Policy>
-    <Policy>KVM-GetIDTokenPrivateKey</Policy>
-    <Policy>JWT-GenerateIDToken</Policy>
-    <Policy>RF-OperationUnavailable</Policy>
-    <Policy>OAuthV2-GetCodeChallenge</Policy>
-    <Policy>JS-ValidateCodeChallenge</Policy>
-  </Policies>
-  <ProxyEndpoints>
-    <ProxyEndpoint>default</ProxyEndpoint>
-  </ProxyEndpoints>
-  <Resources>
-    <Resource>jsc://validate-authorize-request-1.0.js</Resource>
-    <Resource>jsc://validate-scopes-1.0.js</Resource>
-    <Resource>jsc://validate-authz-req-params-1.0.js</Resource>
-    <Resource>jsc://validate-token-request-1.0.js</Resource>
-    <Resource>properties://oidc.properties</Resource>
-    <Resource>jsc://validate-code-challenge-1.0.js</Resource>
-  </Resources>
-</APIProxy>
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<APIProxy revision="1" name="camara-oidc-core-v1" />

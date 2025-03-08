@@ -80,10 +80,10 @@ echo "Importing and Deploying Apigee ${PROXY_NAME} proxy..."
 REV=$(apigeecli apis create bundle -f ./apiproxy -n ${PROXY_NAME} --org "$APIGEE_PROJECT_ID" --token "$TOKEN" --disable-check | jq ."revision" -r) || { echo "Error: Could not create Apigee proxy bundle. Output: $REV"; exit 1; }
 apigeecli apis deploy --wait --name ${PROXY_NAME} --ovr --rev "$REV" --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV" --token "$TOKEN" || { echo "Error: Could not deploy Apigee proxy."; exit 1; }
 
-# if [[ "$USE_MOCK" == "true" ]]; then
-#   echo "Using mock backend. Deploying mock proxy..."
-#   REV=$(apigeecli apis create bundle -f ./ciba-mock-backend/apiproxy -n camara-oidc-ciba-mock-backend-v1 --org "$APIGEE_PROJECT_ID" --token "$TOKEN" --disable-check | jq ."revision" -r) || { echo "Error: Could not create Apigee mock proxy bundle. Output: $REV"; exit 1; }
-#   apigeecli apis deploy --wait --name camara-oidc-ciba-mock-backend-v1 --ovr --rev "$REV" --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV" --token "$TOKEN" || { echo "Error: Could not deploy Apigee mock proxy."; exit 1; }
-# fi
+if [[ "$USE_MOCK" == "true" ]]; then
+  echo "Using mock backend. Deploying camara-kyc-match-mock-backend proxy..."
+  REV=$(apigeecli apis create bundle -f ./kyc-match-mock-backend/apiproxy -n camara-kyc-match-mock-backend --org "$APIGEE_PROJECT_ID" --token "$TOKEN" --disable-check | jq ."revision" -r) || { echo "Error: Could not create Apigee mock proxy bundle. Output: $REV"; exit 1; }
+  apigeecli apis deploy --wait --name camara-kyc-match-mock-backend --ovr --rev "$REV" --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV" --token "$TOKEN" || { echo "Error: Could not deploy Apigee mock proxy."; exit 1; }
+fi
 
 echo "Deployment successful!"
