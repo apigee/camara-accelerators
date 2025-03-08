@@ -17,7 +17,7 @@
 /**
  * Checks if a given MSISDN (Mobile Station International Subscriber Directory Number)
  * is present in a predefined list of allowed MSISDNs.  This might be used for
- * whitelisting or testing purposes.
+ * allowlisting or testing purposes.
  *
  * @param {object} context The Apigee context object. It is expected to have the following methods:
  *                         - `getVariable(variableName)`: Retrieves the value of a variable.
