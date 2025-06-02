@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<AssignMessage continueOnError="false" enabled="true" name="AM-OIDCTokenResponse">
+  <DisplayName>AM-OIDCTokenResponse</DisplayName>
+  <Properties/>
+  <Set>
+    <Payload contentType="application/json" variablePrefix="%" variableSuffix="#">
+{
+    "access_token": "%flow.oidc.access_token#",
+    "expires_in": "%flow.oidc.expires_in#",
+    "token_type": "%flow.oidc.token_type#",
+    "id_token": "%flow.id_token#"
+}
+    </Payload>
+  </Set>&gt;
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="true" transport="http" type="response"/>
+</AssignMessage>

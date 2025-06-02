@@ -1,0 +1,44 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+:root {
+  --font-family-roboto: 'Roboto', sans-serif;
+  --font-family-montserrat: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-family-roboto);
+}
+
+.app-title {
+  font-family: var(--font-family-montserrat);
+}
+
+.top-bar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+#message {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+#message.error {
+  background-color: #fdd;
+  border: 1px solid #faa;
+  color: #a00;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  animation: shake 0.3s; /* Add the shake animation */
+}
+
+#message.success {
+  background-color: #dfd;
+  border: 1px solid #afa;
+  color: #0a0;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
