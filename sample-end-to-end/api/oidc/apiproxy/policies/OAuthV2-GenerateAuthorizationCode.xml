@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<OAuthV2 continueOnError="false" enabled="true" name="OAuthV2-GenerateAuthorizationCode">
+  <DisplayName>OAuthV2-GenerateAuthorizationCode</DisplayName>
+  <Properties/>
+  <Attributes/>
+  <Operation>GenerateAuthorizationCode</Operation>
+  <ClientId>request.formparam.client_id</ClientId>
+  <ResponseType>request.formparam.response_type</ResponseType>
+  <Scope>request.formparam.scope</Scope>
+  <state>request.formparam.state</state>
+  <RedirectUri>request.formparam.redirect_uri</RedirectUri>
+  <Attributes>
+    <Attribute name="sub" ref="request.formparam.login_hint" display="true"/>
+    <Attribute name="code_challenge" ref="request.formparam.code_challenge" display="true"/>
+  </Attributes>
+  <GenerateResponse enabled="true"/>
+  <RFCCompliantRequestResponse>true</RFCCompliantRequestResponse>
+</OAuthV2>
