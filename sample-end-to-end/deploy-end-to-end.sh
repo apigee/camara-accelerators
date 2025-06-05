@@ -106,7 +106,7 @@ if [ -z "$DEFAULT_DATABASE_EXISTS" ]; then
   echo "  Attempting to create a default (Native mode) Firestore database in region ${REGION}..."
   # Note: Creating a database is a permanent choice for the project regarding Native vs Datastore mode for Firestore.
   # This script assumes Firestore Native mode is desired if no database exists.
-  gcloud firestore databases create --project "${PROJECT_ID}" --region "${REGION}" --type=firestore-native --quiet || {
+  gcloud firestore databases create --database=\(default\) --project="${PROJECT_ID}" --location="${REGION}" --type=firestore-native --quiet || {
     echo "Error: Failed to create default Firestore database (Native mode) in region ${REGION} for project ${PROJECT_ID}."
     echo "This could be due to various reasons, including an existing Datastore mode database or insufficient permissions."
     echo "Please check the project settings or create it manually via the Google Cloud Console."
@@ -118,6 +118,7 @@ else
 fi
 
 
+PRIVATE_KEY=$(openssl genpkey -algorithm RSA -outform PEM -pkeyopt rsa_keygen_bits:2048)
 
 echo "Deploying Banking App..."
 
@@ -135,6 +136,24 @@ BANKING_APP_URL=$(gcloud run services describe banking-app-v2 \
 if [ -z "$BANKING_APP_URL" ]; then
     echo "ERROR: Failed to fetch service URL for banking app."
     exit 1
+fi
+
+TOKEN=$(gcloud auth print-access-token) || { echo "Error: Could not get Google Cloud access token."; exit 1; }
+
+echo "Creating env-scoped KVM and KVM Entry for Private Key..."
+apigeecli kvms create --name camara-oidc-ciba  --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV"  --token "$TOKEN" || { echo "Error: Could not create KVM or it already exists. Proceeding with the setup..."; }
+
+if apigeecli kvms entries create -m camara-oidc-ciba -k "id_token_private_key" --value "${PRIVATE_KEY}" --org "$APIGEE_PROJECT_ID" --env "$APIGEE_ENV"  --token "$TOKEN" 
+then 
+ echo "KVM Entry created successfully" 
+else 
+  ret=$?
+  if [[ $ret -eq 409 ]]; then
+    echo "Warning: KVM Entry 'id_token_private_key' already exists.  Continuing..."
+  else
+    echo "Error: Could not create KVM entry. Error code: $ret. Exiting..."
+    exit 1
+  fi
 fi
 
 TOKEN=$(gcloud auth print-access-token) || { echo "Error: Could not get Google Cloud access token."; exit 1; }

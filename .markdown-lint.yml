@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Copyright 2025 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Required: Apigee Project ID.
-export APIGEE_PROJECT_ID="" 
-
-
-# Required: Apigee Host URL (DO NOT include protocol, https will be preprended where needed. E.g., api.mydomain.com).
-export APIGEE_HOST="" 
-
-# Required: Apigee Environment (e.g., dev, prod, test).
-export APIGEE_ENV=""
+MD013:
+  code_blocks: false
+  line_length: 1000
+MD024:
+  siblings_only: true
+MD041: false
+MD029: false
+MD033: false
+MD036: false
