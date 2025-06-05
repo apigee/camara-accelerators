@@ -1,0 +1,18 @@
+# Ignore .pem files
+*.pem
+**/node_modules/**
+**/generated/**
+**/megalinter-reports/**
+
+**/#*.*#
+**/*.*~
+**/#*#
+**/*~
+
+.settings
+.project
+.classpath
+.vscode
+.DS_Store
+*.jar
+**/env1.sh
