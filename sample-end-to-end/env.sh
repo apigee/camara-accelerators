@@ -17,11 +17,11 @@
 # Required: Apigee Project ID.
 # export APIGEE_PROJECT_ID="APIGEE_PROJECT_ID_TO_SET" 
 
-export APIGEE_PROJECT_ID="qwiklabs-gcp-02-6d43bd3835f6" # 
+export APIGEE_PROJECT_ID="cabral-apigee" # 
 
 
-# Required: Apigee Host URL (don't include protocol, https will be preprended. E.g., api.mydomain.com).
-export APIGEE_HOST="api-qwiklabs-gcp-02-6d43bd3835f6.apiservices.dev" 
+# Required: Apigee Host URL (don't include protocol, https will be preprended where needed. E.g., api.mydomain.com).
+export APIGEE_HOST="dev.35.227.240.213.nip.io" 
 
 # Required: Apigee Environment (e.g., dev, prod, test).
-export APIGEE_ENV="eval"
+export APIGEE_ENV="dev"

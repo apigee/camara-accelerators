@@ -15,8 +15,8 @@
  limitations under the License.
 -->
 <AssignMessage continueOnError="false" enabled="true" name="AM-SetLoginPage">
-  <Set>
-    <Payload contentType="text/html"><![CDATA[
+    <Set>
+        <Payload contentType="text/html"><![CDATA[
 <!DOCTYPE html>
 <html >
 <head>
@@ -135,7 +135,7 @@
     <div class="login-client-image">
        <img src="https://www.logo.wine/a/logo/Apigee/Apigee-Logo.wine.svg" width="50%">
     </div>
-    <form autocomplete="off" action="/v1/oidc/consent" method="post">
+    <form autocomplete="off" action="/camara/openIDConnectCore/v1/confirm" method="post">
         <input required type="text" name="username" id="username" placeholder="Enter any login...">
         <input required type="password" name="password" id="password" placeholder="...and password">
         <input required type="hidden" name="state" value="{oidc.flow.authorize.state}">
@@ -158,7 +158,7 @@
 </div>
 </body>
 </html> ]]></Payload>
-  </Set>
-  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-  <AssignTo createNew="false" type="response"/>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" type="response" />
 </AssignMessage>

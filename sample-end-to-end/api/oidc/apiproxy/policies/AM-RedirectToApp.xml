@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AM-RedirectToApp">
+    <Set>
+        <Headers>
+            <Header name="Location">
+                {request.formparam.redirect_uri}?code={oauthv2authcode.OAuthV2-GenerateAuthorizationCode.code}&amp;state={request.formparam.state}</Header>
+        </Headers>
+        <StatusCode>302</StatusCode>
+        <ReasonPhrase>Found</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" type="response" />
+</AssignMessage>

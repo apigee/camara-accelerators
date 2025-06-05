@@ -16,8 +16,8 @@
 -->
 <ProxyEndpoint name="default">
   <PreFlow name="PreFlow">
-    <Request/>
-    <Response/>
+    <Request />
+    <Response />
   </PreFlow>
   <Flows>
     <Flow name="retrieve-date">
@@ -26,13 +26,13 @@
       </Request>
       <Response>
         <Step>
-          <Name>AM-SimSwap</Name>
+          <Name>JS-MockRetrieveDate</Name>
         </Step>
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/retrieve-date") and (request.verb = "POST")</Condition>
     </Flow>
     <Flow name="check">
-      <Description/>
+      <Description />
       <Request>
         <Step>
           <Name>EV-MSISDN</Name>
@@ -50,11 +50,11 @@
     </Flow>
   </Flows>
   <PostFlow name="PostFlow">
-    <Request/>
-    <Response/>
+    <Request />
+    <Response />
   </PostFlow>
   <HTTPProxyConnection>
     <BasePath>/camara-sim-swap-mock-backend</BasePath>
   </HTTPProxyConnection>
-  <RouteRule name="noroute"/>
+  <RouteRule name="noroute" />
 </ProxyEndpoint>

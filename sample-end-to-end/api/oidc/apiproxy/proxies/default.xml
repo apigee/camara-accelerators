@@ -121,7 +121,11 @@
           <Name>OAuthV2-GenerateAuthorizationCode</Name>
         </Step>
       </Request>
-      <Response />
+      <Response>
+        <Step>
+          <Name>AM-RedirectToApp</Name>
+        </Step>
+      </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/confirm") and (request.verb = "POST")</Condition>
     </Flow>
     <Flow name="DefaultFlow">

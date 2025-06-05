@@ -36,23 +36,17 @@ export PROJECT_ID="${APIGEE_PROJECT_ID}"
 export SIM_SWAP_API_URL="https://${APIGEE_HOST}/camara/sim-swap/v0"
 export SIM_SWAP_TARGET_SERVER_URI="${APIGEE_HOST}" 
 export SIM_SWAP_TARGET_SERVER_PATH="/camara-sim-swap-mock-backend"
-export TARGET_SERVER_NAME=camara-sim-swap
-export PRODUCT_NAME=camara-apiproduct-all-apis
-export DEVELOPER_NAME=camara-developer
+export TARGET_SERVER_NAME="camara-sim-swap" # Target server name for sim-swap
+export PRODUCT_NAME="camara-apiproduct-all-apis"
+export DEVELOPER_NAME="camara-developer"
 export DEVELOPER_EMAIL="${DEVELOPER_NAME}@acme.com"
 export SCOPES="kyc-match:match,openid,profile,email,sim-swap,sim-swap:check,sim-swap:retrieve-date"
 export BANKING_APP_URL=""
 
 
 ### Default Variables for the App
-
-# export OAUTH_CLIENT_SECRET=h2YPQLD1cF5pv0MFCFYhet5J4aNl77oIdqhEXnsqQXA4In6KSG2wElL2ClSSYg8J
 export OAUTH_AUTHORIZATION_ENDPOINT="https://${APIGEE_HOST}/camara/openIDConnectCore/v1/authorize"
 export OAUTH_TOKEN_ENDPOINT="https://${APIGEE_HOST}/camara/openIDConnectCore/v1/token"
-# export OAUTH_REDIRECT_URI=https://banking-app-243779034093.us-central1.run.app/callback
-# export OAUTH_USERINFO_ENDPOINT=https://dev.35.227.240.213.nip.io/v1/oauth20/protected,\
-# export OAUTH_LOGOUT_ENDPOINT=https://dev.35.227.240.213.nip.io/v1/oauth20/logout,\
-# export APP_BASE_URL=https://banking-app-243779034093.us-central1.run.app,\
  
 
 ### Utility functions
@@ -81,8 +75,6 @@ create_app() {
   if [[ $NUM_APPS -lt 2 ]]; then
     read -r -a KEYPAIR < <(apigeecli apps create --name "${app_name}" --email "${developer}" --prods "${product_name}" --callback "${BANKING_APP_URL}/callback" --org "$APIGEE_PROJECT_ID" --token "$TOKEN" --disable-check | jq -r ".credentials[0] | [.consumerKey, .consumerSecret] | join(\" \")")
   else
-    # must not echo here, it corrupts the return value of the function.
-    # printf "  The app %s already exists!\n" ${app_name}
     read -r -a KEYPAIR < <(apigeecli apps get --name "${app_name}" --org "$APIGEE_PROJECT_ID" --token "$TOKEN" --disable-check | jq -r ".[0].credentials[0] | [.consumerKey, .consumerSecret] | join(\" \")")
   fi
   echo "${KEYPAIR[@]}"
@@ -101,22 +93,41 @@ gcloud config set project "$APIGEE_PROJECT_ID" || { echo "Error: Could not set G
 
 
 ### Setting up app
-echo "Enabling APIs..."
+echo "Enabling APIs and Firestore"
 
 gcloud services enable artifactregistry.googleapis.com
 gcloud services enable run.googleapis.com
-gcloud services enable cloudbuild.googleapis.com 
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable firestore.googleapis.com 
+
+DEFAULT_DATABASE_EXISTS=$(gcloud firestore databases list --project "${PROJECT_ID}" --format="value(name)" | grep -E ".*/databases/\(default\)$")
+if [ -z "$DEFAULT_DATABASE_EXISTS" ]; then
+  echo "  Default Firestore database does not exist in project ${PROJECT_ID}."
+  echo "  Attempting to create a default (Native mode) Firestore database in region ${REGION}..."
+  # Note: Creating a database is a permanent choice for the project regarding Native vs Datastore mode for Firestore.
+  # This script assumes Firestore Native mode is desired if no database exists.
+  gcloud firestore databases create --project "${PROJECT_ID}" --region "${REGION}" --type=firestore-native --quiet || {
+    echo "Error: Failed to create default Firestore database (Native mode) in region ${REGION} for project ${PROJECT_ID}."
+    echo "This could be due to various reasons, including an existing Datastore mode database or insufficient permissions."
+    echo "Please check the project settings or create it manually via the Google Cloud Console."
+    exit 1
+  }
+  echo "  Default Firestore database (Native mode) created successfully in region ${REGION}."
+else
+  echo "  Default Firestore database already exists."
+fi
+
+
 
 echo "Deploying Banking App..."
 
 # gcloud run deploy --source . will use Cloud Build to build the image and then deploy it.
-gcloud run deploy banking-app \
+gcloud run deploy banking-app-v2 \
   --source ./src/ \
   --region ${REGION} \
-  --allow-unauthenticated
+  --allow-unauthenticated --quiet 
 
-
-BANKING_APP_URL=$(gcloud run services describe banking-app \
+BANKING_APP_URL=$(gcloud run services describe banking-app-v2 \
       --platform="managed" \
       --region="${REGION}" \
       --format="value(status.url)")
@@ -200,7 +211,7 @@ TOKEN=$(gcloud auth print-access-token) || { echo "Error: Could not get Google C
 
 # Re-deploy Cloud run with new variables, and reload
 echo "Redeploying Banking App with new environment variables..."
-gcloud run deploy banking-app \
+gcloud run deploy banking-app-v2 \
   --source ./src/ \
   --region ${REGION} \
   --allow-unauthenticated \
@@ -209,4 +220,5 @@ OAUTH_TOKEN_ENDPOINT=${OAUTH_TOKEN_ENDPOINT},\
 SIM_SWAP_API_URL=${SIM_SWAP_API_URL},\
 OAUTH_REDIRECT_URI=${BANKING_APP_URL}/callback,\
 OAUTH_CLIENT_ID=${CLIENT_ID},\
-OAUTH_CLIENT_SECRET=${CLIENT_SECRET}"
+OAUTH_CLIENT_SECRET=${CLIENT_SECRET}, \
+FLASK_SECRET_KEY=super-secret-key" --quiet
